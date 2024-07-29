@@ -13,7 +13,7 @@ def ask():
         # Récupérer les paramètres de la chaîne de requête
         prompt = request.args.get('ask', 'Default prompt')
         result = ''
-        max_length = 512  # Par exemple, ajustez cette valeur selon les capacités de l'API
+        max_length = 5000  # Par exemple, ajustez cette valeur selon les capacités de l'API
         continue_generating = True
         title = "🍟Bruno🍟"
 
