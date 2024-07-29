@@ -8,9 +8,9 @@ def ask():
     # Récupérer les paramètres de la chaîne de requête
     prompt = request.args.get('ask', 'Default prompt')
     result = ''
-    max_length = 512  # Par exemple, ajustez cette valeur selon les capacités de l'API
+    max_length = 5000  # Par exemple, ajustez cette valeur selon les capacités de l'API
     continue_generating = True
-    title = "🍟 Bruno 💥\n\n"
+    title = "🍟Bruno🍟"
 
     while continue_generating:
         # Stream des résultats
@@ -26,12 +26,15 @@ def ask():
         else:
             # Mettre à jour le prompt pour inclure le résultat généré jusqu'à présent
             prompt = result[-max_length:]
+    
+    # Structurer la réponse JSON avec le titre et le contenu généré
+    response = {
+        "title": title,
+        "content": result
+    }
 
-    # Préfixer le résultat avec le titre
-    full_result = title + result
-
-    # Retourner le résultat complet sous forme de JSON
-    return jsonify({"result": full_result})
+    # Retourner le résultat structuré sous forme de JSON
+    return jsonify(response)
 
 if __name__ == '__main__':
     # Écoute sur le port 5000 (ou tout autre port que vous souhaitez)
